@@ -35,14 +35,20 @@ except:
     exit()
 
 # prompt user to enter a string and check to see if it is a fruit
+attempt_max = 5
+attempt_cur = 0
 try:
     while True:
+        attempt_cur += 1
         my_fruit = str(input("Curious?  Enter an item of food to see if it is a fruit (i.e. \"Avocado\"): "))
         if in_list(my_fruit, all_fruits):
             print("Yes!", my_fruit, "is a fruit.")
         else:
             print("Sorry, but", my_fruit, "is not a fruit.")
-        if str(input("Would you like to investigate another item of food? (Yn) ")).lower() != 'y':
+        if attempt_cur >= attempt_max:
+            print("This program is designed to allow a maximum of", attempt_max, "inquiries.  Please run again if you are curious about more fruits.  Exiting now.")
+            break
+        elif str(input("Would you like to investigate another item of food? (Yn) ")).lower() != 'y':
             break
 except:
     print("We're sorry, there was an error. Make sure you are using Python 3. Crashing now.")
